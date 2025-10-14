@@ -5,11 +5,10 @@
 }
 
 #root {
-  height: 100vh;
   display: flex;
 }
 
 body {
   background: linear-gradient(to right, #0f2027, #2c5364);
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }

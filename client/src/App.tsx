@@ -5,7 +5,6 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './utils/ProtectedRoute'
-import Profile from './pages/Profile'
 
 const App = () => {
   return (
@@ -22,14 +21,6 @@ const App = () => {
           element={
             <ProtectedRoute>
               <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/profile'
-          element={
-            <ProtectedRoute>
-              <Profile />
             </ProtectedRoute>
           }
         />

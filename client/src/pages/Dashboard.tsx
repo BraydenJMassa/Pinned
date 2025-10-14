@@ -43,9 +43,16 @@ const Dashboard = () => {
   return (
     <div className='dashboard'>
       <Navbar />
-      {todos.map((todo) => (
-        <Todo key={todo.todoId} todo={todo} />
-      ))}
+      <main>
+        <button className='create-todo-btn'>Create</button>
+        <div className='todos'>
+          {todos.length > 0 ? (
+            todos.map((todo) => <Todo key={todo.todoId} todo={todo} />)
+          ) : (
+            <>You have no todos.</>
+          )}
+        </div>
+      </main>
     </div>
   )
 }

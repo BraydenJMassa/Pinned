@@ -9,20 +9,9 @@ const Navbar = () => {
       <Link to='/dashboard' className='navbar-header'>
         Todo App
       </Link>
-      <div className='navbar-links'>
-        <Link className='navbar-link' to='/settings'>
-          Settings
-        </Link>
-        <Link className='navbar-link' to='/profile'>
-          Profile
-        </Link>
-        <button
-          onClick={() => toggleLogoutModal(true)}
-          className='navbar-link logout-btn'
-        >
-          Log out
-        </button>
-      </div>
+      <button onClick={() => toggleLogoutModal(true)} className='logout-btn'>
+        Log out
+      </button>
     </nav>
   )
 }

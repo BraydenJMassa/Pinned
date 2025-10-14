@@ -78,7 +78,6 @@ export const logoutUser = (req, res) => {
 }
 
 export const validateRefreshToken = async (req, res) => {
-  console.log('Cookies:', req.cookies)
   const refreshToken = req.cookies.refreshToken
   if (!refreshToken) {
     return res.status(401).json({ error: 'No refresh token available' })

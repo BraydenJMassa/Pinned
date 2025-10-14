@@ -1,3 +1,33 @@
 .dashboard {
   background: linear-gradient(to right, #c1d2e3, #b1bcc7);
+  min-height: 100vh;
+}
+
+.create-todo-btn {
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.todo {
+  border: 1px solid black;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 100%;
+  padding: 0 15px;
+}
+
+.todo-btns {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
 }
