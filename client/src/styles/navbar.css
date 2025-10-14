@@ -1,0 +1,40 @@
+.navbar {
+  display: flex;
+  width: 100vw;
+  height: 18vh;
+  padding: 0 60px;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #0f2027, #2c5364);
+}
+
+.navbar-header {
+  font-size: 2rem;
+  text-decoration: none;
+  color: #c1d2e3;
+}
+
+.navbar-links {
+  display: flex;
+  width: 55%;
+  margin-right: 10%;
+  justify-content: space-between;
+}
+
+.navbar-link {
+  text-decoration: none;
+  font-size: 1.4rem;
+  height: 100%;
+  color: #c1d2e3;
+}
+.navbar-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 5px;
+}
+
+.logout-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}

@@ -1,0 +1,29 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid black;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  height: 450px;
+  width: 500px;
+  text-align: center;
+  padding: 40px 50px;
+  margin: auto;
+}
+
+.home-link {
+  border: 1px solid black;
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.home-link:hover {
+  background: linear-gradient(0deg, #254b5c, #4d849b);
+  color: whitesmoke;
+}
