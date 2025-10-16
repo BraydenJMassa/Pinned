@@ -1,0 +1,9 @@
+POST https://localhost:4000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "bmassa31@gmail.com",
+    "password": "Brayj3156$"
+}
+###
+POST https://localhost:4000/api/user/auth/refresh

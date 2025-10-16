@@ -1,0 +1,14 @@
+POST https://localhost:4000/api/todo
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YjdkZDhmMC05ZmRiLTQyMDMtYTlhNy0yMjc5OTk3NGUwNzQiLCJlbWFpbCI6ImJtYXNzYTMxQGdtYWlsLmNvbSIsImlhdCI6MTczMTcyODE1MiwiZXhwIjoxNzMxNzI5OTUyfQ.xPN2PojHFuNuw1YnQn9g3o9lIlnLDsXaWrqUklJXtrQ
+
+{
+    "description": "Yet another todo"
+}
+
+###
+GET https://localhost:4000/api/todo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YjdkZDhmMC05ZmRiLTQyMDMtYTlhNy0yMjc5OTk3NGUwNzQiLCJlbWFpbCI6ImJtYXNzYTMxQGdtYWlsLmNvbSIsImlhdCI6MTczMTcyODE1MiwiZXhwIjoxNzMxNzI5OTUyfQ.xPN2PojHFuNuw1YnQn9g3o9lIlnLDsXaWrqUklJXtrQ
+###
+GET https://localhost:4000/api/todo/9390ab69-12fa-4a6b-82f8-5ef4472427a6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YjdkZDhmMC05ZmRiLTQyMDMtYTlhNy0yMjc5OTk3NGUwNzQiLCJlbWFpbCI6ImJtYXNzYTMxQGdtYWlsLmNvbSIsImlhdCI6MTczMTY2NjY2OCwiZXhwIjoxNzMxNjY4NDY4fQ.6Na76y37GVcZDYdvuovazu14d3N9Kbr-D3Sez3GTxmQ
