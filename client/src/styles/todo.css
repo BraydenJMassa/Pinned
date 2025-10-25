@@ -1,0 +1,6 @@
+.todo-btn {
+  width: 20%;
+}
+.todo-btn:hover {
+  cursor: pointer;
+}
