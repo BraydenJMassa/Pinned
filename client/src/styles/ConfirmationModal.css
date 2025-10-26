@@ -27,6 +27,11 @@
   cursor: pointer;
 }
 
+.modal-x-btn:hover,
+.modal-btn:hover {
+  transform: scale(1.1);
+}
+
 .modal-btns {
   display: flex;
   width: 50%;

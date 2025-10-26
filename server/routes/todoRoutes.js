@@ -7,6 +7,7 @@ import {
   getTodo,
   updateTodo,
   deleteTodo,
+  toggleComplete,
 } from '../controllers/todoController.js'
 import checkTodoExists from '../middlewares/checkTodoExists.js'
 
@@ -18,6 +19,8 @@ router.get('/', getTodos)
 router.get('/:todoId', checkTodoExists, getTodo)
 // Update todo description
 router.put('/:todoId', checkTodoExists, updateTodo)
+// Toggles the completed field
+router.patch('/togglecompleted/:todoId', checkTodoExists, toggleComplete)
 // Delete todo
 router.delete('/:todoId', checkTodoExists, deleteTodo)
 

@@ -1,6 +1,37 @@
+.todo-desc {
+  cursor: default;
+  color: #214150;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 20px 15px 20px 15px;
+  line-height: 25px;
+}
+@media (max-width: 1024px) {
+  .todo-desc {
+    width: 75%;
+  }
+}
+
 .todo-btn {
   width: 20%;
 }
 .todo-btn:hover {
   cursor: pointer;
+  transform: scale(1.1);
+}
+
+.completed {
+  position: relative;
+  color: #214150;
+}
+.completed::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(38, 64, 94, 0.5);
+  border-radius: 10px; /* same as .todo */
+  pointer-events: none; /* so buttons inside are still clickable */
 }

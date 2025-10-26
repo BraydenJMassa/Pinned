@@ -2,32 +2,104 @@
   background: linear-gradient(to right, #c1d2e3, #b1bcc7);
   min-height: 100vh;
 }
-
-.create-todo-btn {
+.dashboard main {
+  text-align: center;
+  height: 100%;
+  position: relative;
 }
-
 .todos {
-  display: flex;
+  position: relative;
+  display: inline-flex; /* you can keep flex or inline-flex */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 50%;
+  margin: 50px auto 0;
+  text-align: left;
+
+  height: 70vh; /* set a fixed height relative to viewport */
+  overflow-y: auto; /* vertical scroll only */
+  padding-right: 10px; /* optional, to make room for scrollbar */
+}
+/* Optional: style the scrollbar */
+.todos::-webkit-scrollbar {
+  width: 8px;
+}
+.todos::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+.todos::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* .todos {
+  position: relative;
+  display: inline-block;
+  margin: 50px auto 0;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
-  margin: auto;
+  max-width: 50%;
   margin-top: 50px;
-}
+  text-align: left;
+  height: 100%;
+} */
 
 .todo {
-  border: 1px solid black;
-  height: 50px;
+  border: 2px solid hsl(199, 42%, 22%);
+  border-radius: 10px;
+  min-height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 100%;
-  padding: 0 15px;
+  margin-bottom: 15px;
+
+  min-height: 50%;
 }
 
 .todo-btns {
+  min-width: 25%;
   width: 25%;
   display: flex;
   justify-content: space-between;
+  padding-right: 15px;
+}
+
+.create-todo-btn {
+  position: absolute;
+  right: 5%;
+  top: 4%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  background-color: #5caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.create-todo-btn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .todo {
+    min-height: 100%;
+    align-items: stretch;
+  }
+  .todo-btns {
+    flex-direction: column;
+    min-width: 10%;
+    width: 25%;
+    min-height: 100%;
+    min-height: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    border-left: 2px solid black;
+  }
+  .todo-btn {
+    padding: 10px 0 10px 0;
+    transform: scale(1.4);
+  }
 }

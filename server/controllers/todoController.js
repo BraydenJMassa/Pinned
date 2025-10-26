@@ -18,10 +18,11 @@ export const createTodo = async (req, res) => {
     res.status(500).json({ error: err.message })
   }
 }
-
+// Irrelevant for this project
 export const getTodos = async (req, res) => {
   try {
-    const todos = await sql`SELECT * FROM todos`
+    const todos =
+      await sql`SELECT description, completed FROM todos ORDER BY completed ASC, createdAt DESC`
     res.status(200).json(todos)
   } catch (err) {
     res.status(500).json({ error: err.message })
@@ -44,6 +45,19 @@ export const updateTodo = async (req, res) => {
     const [newTodo] =
       await sql`UPDATE todos SET description = ${description} WHERE todo_id = ${todoId} RETURNING *`
     return res.status(200).json(newTodo)
+  } catch (err) {
+    return res.status(500).json({ error: err.message })
+  }
+}
+
+export const toggleComplete = async (req, res) => {
+  const todoId = req.todo.todoId
+  try {
+    await sql`UPDATE todos SET completed = ${!req.todo
+      .completed} WHERE todo_id = ${todoId}`
+    return res
+      .status(200)
+      .json({ message: 'Todo completed toggled successfully' })
   } catch (err) {
     return res.status(500).json({ error: err.message })
   }

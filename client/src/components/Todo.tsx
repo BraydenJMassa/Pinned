@@ -4,6 +4,7 @@ import checkedCheckbox from '../assets/checked-checkbox.png'
 import uncheckedCheckbox from '../assets/unchecked-checkbox.png'
 import deleteIcon from '../assets/delete.png'
 import '../styles/todo.css'
+import '../styles/dashboard.css'
 import { useState } from 'react'
 import { useConfirmationModal } from '../hooks/useConfirmationModal'
 import axios from 'axios'
@@ -11,12 +12,14 @@ import { useAuth } from '../hooks/useAuth'
 
 type Props = {
   todo: TodoType
+  onUpdate: () => void
 }
 
-const Todo = ({ todo }: Props) => {
+const Todo = ({ todo, onUpdate }: Props) => {
   const { auth } = useAuth()
   const { openModal } = useConfirmationModal()
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState(todo.completed)
+  const [isLoading, setIsLoading] = useState(false)
 
   const deleteTodo = async () => {
     await axios.delete(`/api/todo/${todo.todoId}`, {
@@ -24,6 +27,7 @@ const Todo = ({ todo }: Props) => {
         Authorization: `Bearer ${auth.accessToken}`,
       },
     })
+    onUpdate()
   }
 
   const handleClickDelete = async () => {
@@ -38,12 +42,27 @@ const Todo = ({ todo }: Props) => {
     console.log('Edited')
   }
   const handleClickCheckbox = async () => {
-    setIsChecked(!isChecked)
+    const updatedChecked = !isChecked
+    setIsChecked(updatedChecked)
+    setIsLoading(true)
+    try {
+      await axios.patch(
+        `api/todo/togglecompleted/${todo.todoId}`,
+        { todo },
+        { headers: { Authorization: `Bearer ${auth.accessToken}` } }
+      )
+      onUpdate()
+    } catch (err) {
+      console.error('Error updating todo: ', err)
+      setIsChecked(!updatedChecked)
+    } finally {
+      setIsLoading(false)
+    }
   }
-  const checkboxImage = isChecked ? checkedCheckbox : uncheckedCheckbox
+  const checkBoxImg = isChecked ? checkedCheckbox : uncheckedCheckbox
   return (
-    <div className='todo'>
-      {todo.description}
+    <div className={isChecked ? 'todo completed' : 'todo'}>
+      <div className='todo-desc'>{todo.description}</div>
       <div className='todo-btns'>
         <img
           src={deleteIcon}
@@ -58,16 +77,11 @@ const Todo = ({ todo }: Props) => {
           onClick={handleClickEdit}
         />
         <img
-          src={checkboxImage}
+          src={checkBoxImg}
           className='todo-btn'
           alt='checked'
-          onClick={handleClickCheckbox}
+          onClick={!isLoading ? handleClickCheckbox : undefined}
         />
-        {/* {isChecked ? (
-          <img src={checkedCheckbox} className='todo-btn' alt='checked' />
-        ) : (
-          <img src={uncheckedCheckbox} className='todo-btn' alt='unchecked' />
-        )} */}
       </div>
     </div>
   )
