@@ -1,4 +1,4 @@
-import '../styles/ConfirmationModal.css'
+import '../styles/Modal.css'
 
 type ConfirmationModalProps = {
   title: string
@@ -10,8 +10,6 @@ type ConfirmationModalProps = {
 
 const ConfirmationModal = ({
   title,
-  confirmText = 'Yes',
-  cancelText = 'No',
   onConfirm,
   onCancel,
 }: ConfirmationModalProps) => {
@@ -22,11 +20,11 @@ const ConfirmationModal = ({
       </button>
       <h1>{title}</h1>
       <div className='modal-btns'>
-        <button className='modal-btn red-btn' onClick={onCancel}>
-          {cancelText}
-        </button>
         <button className='modal-btn green-btn' onClick={onConfirm}>
-          {confirmText}
+          Yes
+        </button>
+        <button className='modal-btn red-btn' onClick={onCancel}>
+          No
         </button>
       </div>
     </div>

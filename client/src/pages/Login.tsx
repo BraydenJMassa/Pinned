@@ -81,7 +81,9 @@ const Login = () => {
           </Link>
         </div>
       </form>
-      <button onClick={quickLogin}>Quick login</button>
+      <button className='quick-login' onClick={quickLogin}>
+        Quick login
+      </button>
     </>
   )
 }

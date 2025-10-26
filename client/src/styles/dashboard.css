@@ -67,13 +67,13 @@
 
 .create-todo-btn {
   position: absolute;
-  right: 5%;
-  top: 4%;
+  right: 20%;
+  top: 10%;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   font-size: 1.2rem;
-  background-color: #5caf50;
+  background-color: #214150;
   color: white;
   border: none;
   cursor: pointer;
@@ -101,5 +101,8 @@
   .todo-btn {
     padding: 10px 0 10px 0;
     transform: scale(1.4);
+  }
+  .create-todo-btn {
+    right: 10%;
   }
 }

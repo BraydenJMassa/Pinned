@@ -1,27 +1,24 @@
 import { createContext, ReactNode, useCallback, useState } from 'react'
-import ConfirmationModal from '../components/ConfirmationModal'
+import TodoModal from '../components/TodoModal'
 
 type ModalOptions = {
-  title: string
   onConfirm: () => void
   onCancel?: () => void
+  initialDesc?: string
+  title: string
 }
 
-type ConfirmationModalContextType = {
+type TodoModalContextType = {
   showModal: boolean
   openModal: (options: ModalOptions) => void
   closeModal: () => void
 }
 
-const ConfirmationModalContext = createContext<
-  ConfirmationModalContextType | undefined
->(undefined)
+const TodoModalContext = createContext<TodoModalContextType | undefined>(
+  undefined
+)
 
-export const ConfirmationModalProvider = ({
-  children,
-}: {
-  children: ReactNode
-}) => {
+export const TodoModalProvider = ({ children }: { children: ReactNode }) => {
   const [showModal, setShowModal] = useState(false)
   const [modalOptions, setModalOptions] = useState<ModalOptions | null>(null)
 
@@ -45,19 +42,18 @@ export const ConfirmationModalProvider = ({
   }
 
   return (
-    <ConfirmationModalContext.Provider
-      value={{ showModal, openModal, closeModal }}
-    >
+    <TodoModalContext.Provider value={{ showModal, openModal, closeModal }}>
       {children}
       {showModal && modalOptions && (
-        <ConfirmationModal
-          title={modalOptions.title}
+        <TodoModal
+          initialDesc={''}
           onConfirm={handleConfirm}
           onCancel={handleCancel}
+          title={modalOptions.title}
         />
       )}
-    </ConfirmationModalContext.Provider>
+    </TodoModalContext.Provider>
   )
 }
 
-export default ConfirmationModalContext
+export default TodoModalContext
