@@ -1,12 +1,16 @@
 import axios from 'axios'
 import useRefresh from '../hooks/useRefresh'
 import { useEffect } from 'react'
+import { useAuth } from '../hooks/useAuth'
 
-axios.defaults.baseURL = 'http://localhost:4000'
+axios.defaults.baseURL = import.meta.env.PROD
+  ? 'put backend link here' //
+  : 'http://localhost:4000'
 axios.defaults.withCredentials = true
 
 const useAxiosInterceptor = () => {
-  const { refresh } = useRefresh()
+  const { setAuth } = useAuth()
+  const { refresh } = useRefresh(setAuth)
 
   useEffect(() => {
     const interceptor = axios.interceptors.response.use(
