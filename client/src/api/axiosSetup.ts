@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useAuth } from '../hooks/useAuth'
 
 axios.defaults.baseURL = import.meta.env.PROD
-  ? 'put backend link here' //
+  ? 'https://todo-app-u9wh.onrender.com/'
   : 'http://localhost:4000'
 axios.defaults.withCredentials = true
 
