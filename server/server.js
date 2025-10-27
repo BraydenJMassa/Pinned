@@ -18,7 +18,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:5173',
-      'https://todo-app-git-main-braydenjmassas-projects.vercel.app/',
+      'https://todo-app-eta-two-96.vercel.app/',
     ],
     credentials: true,
   })
