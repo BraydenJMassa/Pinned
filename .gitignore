@@ -37,6 +37,7 @@ ssl/
 # ===== Database & SQL Dumps =====
 *.sql
 queries.sql
+api_calls
 
 # ===== IDE & Editor =====
 .vscode/*
