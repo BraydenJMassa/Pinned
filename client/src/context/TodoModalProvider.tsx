@@ -2,7 +2,7 @@ import { createContext, ReactNode, useCallback, useState } from 'react'
 import TodoModal from '../components/TodoModal'
 
 type ModalOptions = {
-  onConfirm: () => void
+  onConfirm: (desc: string) => void
   onCancel?: () => void
   initialDesc?: string
   title: string
@@ -10,8 +10,8 @@ type ModalOptions = {
 
 type TodoModalContextType = {
   showModal: boolean
-  openModal: (options: ModalOptions) => void
-  closeModal: () => void
+  openTodoModal: (options: ModalOptions) => void
+  closeTodoModal: () => void
 }
 
 const TodoModalContext = createContext<TodoModalContextType | undefined>(
@@ -31,8 +31,8 @@ export const TodoModalProvider = ({ children }: { children: ReactNode }) => {
     setShowModal(false)
   }, [])
 
-  const handleConfirm = () => {
-    modalOptions?.onConfirm()
+  const handleConfirm = (desc: string) => {
+    modalOptions?.onConfirm(desc)
     closeModal()
   }
 
@@ -42,11 +42,17 @@ export const TodoModalProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <TodoModalContext.Provider value={{ showModal, openModal, closeModal }}>
+    <TodoModalContext.Provider
+      value={{
+        showModal,
+        openTodoModal: openModal,
+        closeTodoModal: closeModal,
+      }}
+    >
       {children}
       {showModal && modalOptions && (
         <TodoModal
-          initialDesc={''}
+          initialDesc={modalOptions.initialDesc || ''}
           onConfirm={handleConfirm}
           onCancel={handleCancel}
           title={modalOptions.title}

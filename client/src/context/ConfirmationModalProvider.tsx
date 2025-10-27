@@ -9,8 +9,8 @@ type ModalOptions = {
 
 type ConfirmationModalContextType = {
   showModal: boolean
-  openModal: (options: ModalOptions) => void
-  closeModal: () => void
+  openConfirmationModal: (options: ModalOptions) => void
+  closeConfirmationModal: () => void
 }
 
 const ConfirmationModalContext = createContext<
@@ -25,28 +25,32 @@ export const ConfirmationModalProvider = ({
   const [showModal, setShowModal] = useState(false)
   const [modalOptions, setModalOptions] = useState<ModalOptions | null>(null)
 
-  const openModal = useCallback((options: ModalOptions) => {
+  const openConfirmationModal = useCallback((options: ModalOptions) => {
     setModalOptions(options)
     setShowModal(true)
   }, [])
 
-  const closeModal = useCallback(() => {
+  const closeConfirmationModal = useCallback(() => {
     setShowModal(false)
   }, [])
 
   const handleConfirm = () => {
     modalOptions?.onConfirm()
-    closeModal()
+    closeConfirmationModal()
   }
 
   const handleCancel = () => {
     modalOptions?.onCancel?.()
-    closeModal()
+    closeConfirmationModal()
   }
 
   return (
     <ConfirmationModalContext.Provider
-      value={{ showModal, openModal, closeModal }}
+      value={{
+        showModal,
+        openConfirmationModal,
+        closeConfirmationModal,
+      }}
     >
       {children}
       {showModal && modalOptions && (

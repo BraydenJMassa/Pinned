@@ -7,6 +7,7 @@ import {
   useState,
 } from 'react'
 import axios from 'axios'
+import useRefresh from '../hooks/useRefresh'
 
 type AuthType = {
   userId: string
@@ -49,23 +50,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+  const { refresh } = useRefresh(setAuth)
+
   useEffect(() => {
     const tryRefresh = async () => {
-      try {
-        const response = await axios.post(
-          '/api/auth/refresh',
-          {},
-          { withCredentials: true }
-        )
-        setAuth({
-          userId: response.data.userId,
-          accessToken: response.data.accessToken,
-        })
-      } catch {
+      const newToken = await refresh()
+      if (!newToken) {
         clearAuth()
-      } finally {
-        setLoading(false)
       }
+      setLoading(false)
     }
     tryRefresh()
   }, [])

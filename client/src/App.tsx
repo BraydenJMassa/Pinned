@@ -5,8 +5,10 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './utils/ProtectedRoute'
+import useAxiosInterceptor from './api/axiosSetup'
 
 const App = () => {
+  useAxiosInterceptor()
   return (
     <Router>
       <Routes>

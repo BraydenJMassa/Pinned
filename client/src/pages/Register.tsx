@@ -15,7 +15,7 @@ const Register = () => {
     validateAll,
     handleBlur,
     handleInputChange,
-    formIsValid,
+    executeEmailInUseError,
   } = useRegisterFormValidation({
     inputValues,
     setInputValues,
@@ -25,9 +25,27 @@ const Register = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    validateAll()
-    if (!formIsValid) {
+    const isValid = validateAll()
+    if (!isValid) {
       return
+    }
+
+    try {
+      const emailCheck = await axios.post('/api/user/check-email', {
+        email: inputValues.email,
+      })
+      if (emailCheck.data.exists) {
+        executeEmailInUseError()
+        setInputValues({
+          email: inputValues.email,
+          password: '',
+          confirmPassword: '',
+        })
+        return
+      }
+    } catch (err) {
+      console.error(err)
+      setAuth({ userId: '', accessToken: '' })
     }
     // Register logic
     try {

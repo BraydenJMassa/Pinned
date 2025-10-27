@@ -2,6 +2,9 @@ import { sql } from '../database/dbConfig.js'
 
 export const createTodo = async (req, res) => {
   const { description } = req.body
+  if (!req.token?.userId) {
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
   const userId = req.token.userId
   if (!description) {
     return res.status(400).json({ error: 'Description must be provided' })

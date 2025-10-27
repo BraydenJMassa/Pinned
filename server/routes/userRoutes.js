@@ -8,6 +8,7 @@ import {
   updatePassword,
   deleteUser,
   getTodosForUser,
+  checkEmailExists,
 } from '../controllers/userController.js'
 import { authCheck } from '../middlewares/authCheck.js'
 import { checkUserExistsById } from '../middlewares/checkUserExists.js'
@@ -18,6 +19,9 @@ router.get('/', getUsers)
 
 // Get user with id
 router.get('/:userId', checkUserExistsById, getUser)
+
+// Checks if user exists by email
+router.post('/check-email', checkEmailExists)
 
 // Update user's password
 router.put('/:userId', validatePassword, checkUserExistsById, updatePassword)

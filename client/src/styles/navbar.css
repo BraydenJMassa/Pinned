@@ -11,14 +11,14 @@
 }
 
 .navbar-header {
-  font-size: 2rem;
+  font-size: 3rem;
   text-decoration: none;
   color: #c1d2e3;
 }
 
 .logout-btn {
   text-decoration: none;
-  font-size: 1.4rem;
+  font-size: 2rem;
   height: 100%;
   color: #c1d2e3;
   border: none;
@@ -29,4 +29,18 @@
   text-decoration: underline;
   text-underline-offset: 10px;
   text-decoration-thickness: 5px;
+}
+
+.logout-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+@media (max-width: 1024px) {
+  .navbar-header {
+    font-size: 2.4rem;
+  }
+  .logout-btn {
+    font-size: 1.8rem;
+  }
 }

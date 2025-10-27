@@ -17,9 +17,9 @@ router.post('/register', validateEmail, validatePassword, registerUser)
 // Login user
 router.post(
   '/login',
-  checkUserExistsByEmail,
   validateEmail,
   validatePassword,
+  checkUserExistsByEmail,
   loginUser
 )
 

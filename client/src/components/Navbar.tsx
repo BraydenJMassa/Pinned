@@ -1,18 +1,20 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../styles/navbar.css'
 import { useConfirmationModal } from '../hooks/useConfirmationModal'
 import { useAuth } from '../hooks/useAuth'
 
 const Navbar = () => {
   const { logout } = useAuth()
-  const { openModal } = useConfirmationModal()
+  const { openConfirmationModal: openModal } = useConfirmationModal()
+  const navigate = useNavigate()
 
   const handleLogoutClick = () => {
     openModal({
       title: 'Are you sure you want to log out?',
-      confirmText: 'Yes',
-      cancelText: 'No',
-      onConfirm: logout,
+      onConfirm: async () => {
+        await logout()
+        navigate('/')
+      },
     })
   }
   return (

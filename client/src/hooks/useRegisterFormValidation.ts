@@ -96,6 +96,11 @@ const useFormValidation = ({ inputValues, setInputValues }: Props) => {
     validateEmail()
     validatePassword()
     validateConfirmPassword()
+    return (
+      validator.isEmail(email) &&
+      validator.isStrongPassword(password) &&
+      password === confirmPassword
+    )
   }
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -118,13 +123,14 @@ const useFormValidation = ({ inputValues, setInputValues }: Props) => {
     }
   }
 
-  const formIsValid = () => {
-    return success.email && success.password && success.confirmPassword
-  }
-
   const executeEmailInUseError = () => {
     setErrors((prev) => ({ ...prev, email: 'Email already in use' }))
-    setSuccess((prev) => ({ ...prev, email: false }))
+    setSuccess((prev) => ({
+      ...prev,
+      email: false,
+      password: false,
+      confirmPassword: false,
+    }))
   }
 
   return {
@@ -134,7 +140,6 @@ const useFormValidation = ({ inputValues, setInputValues }: Props) => {
     validateAll,
     handleInputChange,
     handleBlur,
-    formIsValid,
     executeEmailInUseError,
   }
 }

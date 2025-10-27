@@ -17,6 +17,23 @@ export const getUser = async (req, res) => {
   res.status(200).json(req.user)
 }
 
+export const checkEmailExists = async (req, res) => {
+  const { email } = req.body
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' })
+  }
+  try {
+    const [user] = await sql`SELECT * FROM users WHERE email = ${email}`
+    if (user) {
+      return res.status(200).json({ exists: true })
+    } else {
+      return res.status(200).json({ exists: false })
+    }
+  } catch (err) {
+    return res.status(500).json({ error: err.message })
+  }
+}
+
 export const updatePassword = async (req, res) => {
   const { userId } = req.params
   const updatedHashedPassword = await bcrypt.hash(req.user.password, 10)

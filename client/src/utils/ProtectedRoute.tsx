@@ -10,7 +10,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { auth } = useAuth()
 
   if (!auth.accessToken) {
-    return <Navigate to='/' />
+    return <Navigate to='/login' />
   }
 
   return <>{children}</>
