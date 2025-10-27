@@ -16,10 +16,7 @@ import { authCheck } from './middlewares/authCheck.js'
 const app = express()
 app.use(
   cors({
-    origin: [
-      'http://localhost:5173',
-      'https://todo-app-eta-two-96.vercel.app/',
-    ],
+    origin: ['http://localhost:5173', 'https://todo-app-eta-two-96.vercel.app'],
     credentials: true,
   })
 )
