@@ -1,34 +1,24 @@
 import axios from 'axios'
 
 const useRefresh = (
-  setAuth?: (auth: { userId: string; accessToken: string }) => void
+  setAuth: (auth: { userId: string; accessToken: string }) => void
 ) => {
   const refresh = async () => {
     try {
       const response = await axios.post(
         '/api/auth/refresh',
         {},
-        {
-          withCredentials: true,
-          validateStatus: (status) => status < 500, // ✅ don't treat 4xx as errors
-        }
+        { withCredentials: true }
       )
-      console.log('refresh response status', response.status)
-      if (response.status === 200) {
-        if (setAuth) {
-          setAuth({
-            accessToken: response.data.accessToken,
-            userId: response.data.userId,
-          })
-        }
-        return response.data.accessToken
-      } else {
-        if (setAuth) setAuth({ userId: '', accessToken: '' })
-        return null
-      }
+
+      setAuth({
+        userId: response.data.userId,
+        accessToken: response.data.accessToken,
+      })
+
+      return response.data.accessToken
     } catch (err) {
-      console.log('Caught by catch:', err)
-      if (setAuth) setAuth({ userId: '', accessToken: '' })
+      setAuth({ userId: '', accessToken: '' })
       return null
     }
   }

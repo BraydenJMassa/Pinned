@@ -16,10 +16,10 @@
   max-width: 50%;
   margin: 50px auto 0;
   text-align: left;
-
-  height: 70vh; /* set a fixed height relative to viewport */
-  overflow-y: auto; /* vertical scroll only */
-  padding-right: 10px; /* optional, to make room for scrollbar */
+  height: 70vh;
+  overflow-y: auto;
+  resize: none;
+  padding-right: 10px;
 }
 /* Optional: style the scrollbar */
 .todos::-webkit-scrollbar {

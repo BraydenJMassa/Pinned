@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import '../styles/Modal.css'
+import EditTodoTextarea from './EditTodoTextarea'
 
 type TodoModalProps = {
   onConfirm: (desc: string) => void
@@ -44,12 +45,7 @@ const TodoModal = ({
           x
         </button>
         <h1 className='modal-title'>{title}</h1>
-        <textarea
-          className='todo-modal-input'
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-          spellCheck={false}
-        />
+        <EditTodoTextarea desc={desc} setDesc={setDesc} />
         <div className='modal-btns todo-modal-btns'>
           <button className='modal-btn green-btn' onClick={handleSubmit}>
             Submit

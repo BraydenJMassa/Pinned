@@ -27,8 +27,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     userId: '',
     accessToken: '',
   })
-
   const [loading, setLoading] = useState(true)
+  const { refresh } = useRefresh(setAuth)
 
   const clearAuth = () => {
     setAuth({ userId: '', accessToken: '' })
@@ -50,8 +50,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  const { refresh } = useRefresh(setAuth)
-
   useEffect(() => {
     const tryRefresh = async () => {
       const newToken = await refresh()
@@ -63,7 +61,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     tryRefresh()
   }, [])
 
-  if (loading) return <div>Loading...</div>
+  if (loading)
+    return (
+      <div className='loading-container'>
+        <div className='spinner' />
+      </div>
+    )
 
   return (
     <AuthContext.Provider value={{ auth, setAuth, logout }}>

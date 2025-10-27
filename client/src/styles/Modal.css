@@ -49,12 +49,21 @@
   border-radius: 10px;
   border: 1px solid #2c5364;
   resize: none;
+  overflow-y: scroll;
   padding: 8px;
   font-family: inherit;
   font-size: 2rem;
   line-height: 1.4;
   color: #0f2027;
 }
+
+/* .todo-modal-input {
+  width: 100%;
+  height: 200px;
+  resize: none;
+  overflow-y: scroll;
+  padding-right: 10px;
+} */
 
 .todo-modal-input:focus {
   outline: none;
