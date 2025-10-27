@@ -1,0 +1,19 @@
+GET https://localhost:4000/api/user/30ff42be-d0d6-4d68-9bbe-d765e323fc72
+###
+GET https://localhost:4000/api/user
+###
+DELETE https://localhost:4000/api/user/ca003bac-a071-4f67-a0ce-a353ac529596
+###
+GET https://localhost:4000/api/users/a967dcf5-423c-4af9-b73c-b6381ea82a5b/todo
+###
+PUT https://localhost:4000/api/user/30ff42be-d0d6-4d68-9bbe-d765e323fc72
+Content-Type: application/json
+
+{
+    "password": "Brayj3156#$"
+}
+
+###
+
+GET https://localhost:4000/api/user/todo/c42be331-b26b-4451-bf91-8957222dc3de
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YjdkZDhmMC05ZmRiLTQyMDMtYTlhNy0yMjc5OTk3NGUwNzQiLCJlbWFpbCI6ImJtYXNzYTMxQGdtYWlsLmNvbSIsImlhdCI6MTczMTcyODU0OCwiZXhwIjoxNzMxNzMwMzQ4fQ.eJ-XiRim7N4AhHkUU6xLt_TGHOxL8FkXByED8lSyUJE
