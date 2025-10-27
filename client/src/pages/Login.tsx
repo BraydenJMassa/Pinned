@@ -37,12 +37,6 @@ const Login = () => {
       setAuth({ userId: '', accessToken: '' })
     }
   }
-  const quickLogin = async () => {
-    setInputValues({
-      email: 'bmassa56@gmail.com',
-      password: 'Brayj3156$',
-    })
-  }
   return (
     <>
       <form id='login-form' onSubmit={handleSubmit}>
@@ -81,9 +75,6 @@ const Login = () => {
           </Link>
         </div>
       </form>
-      <button className='quick-login' onClick={quickLogin}>
-        Quick login
-      </button>
     </>
   )
 }

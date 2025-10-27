@@ -68,10 +68,3 @@ form {
 .auth-toggle-link {
   text-decoration: none;
 }
-
-.quick-login {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  cursor: pointer;
-}
