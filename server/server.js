@@ -35,7 +35,7 @@ app.use('/api/auth', authRoutes)
 //   cert: fs.readFileSync('./ssl/cert.pem'), // Path to your certificate file
 // }
 
-const PORT = process.env.EXPRESS_PORT || 4000
+const PORT = process.env.PORT || 4000
 
 app.listen(PORT, () => console.log(`HTTP server running on port ${PORT}`))
 
