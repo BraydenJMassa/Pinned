@@ -25,6 +25,7 @@ const ConfirmationModal = ({
         onCancel();
       }
       if (e.key === "Enter") {
+        e.preventDefault();
         onConfirm();
       }
     };
