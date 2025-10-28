@@ -71,7 +71,7 @@ export const getTodosForUser = async (req, res) => {
     }
     console.log('User: ', user)
     const todos =
-      await sql`SELECT * FROM todos WHERE user_id = ${userId} ORDER BY completed ASC, createdAt DESC`
+      await sql`SELECT * FROM todos WHERE user_id = ${userId} ORDER BY completed ASC, created_at DESC`
     console.log('Todos: ', todos)
     return res.status(200).json(todos)
   } catch (err) {
