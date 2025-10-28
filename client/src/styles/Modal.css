@@ -25,7 +25,7 @@
   color: #0f2027;
 }
 
-.todo-modal {
+.pin-modal {
   width: 40vw;
   height: 55vh;
 }
@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 
-.todo-modal-input {
+.pin-modal-input {
   width: 60%;
   min-height: 40%;
   margin: 15px auto 15px;
@@ -57,28 +57,20 @@
   color: #0f2027;
 }
 
-/* .todo-modal-input {
-  width: 100%;
-  height: 200px;
-  resize: none;
-  overflow-y: scroll;
-  padding-right: 10px;
-} */
-
-.todo-modal-input:focus {
+.pin-modal-input:focus {
   outline: none;
   border: 2px solid #2c5364;
   box-shadow: none;
 }
 
-.todo-modal-input::-webkit-scrollbar {
+.pin-modal-input::-webkit-scrollbar {
   width: 8px;
 }
-.todo-modal-input::-webkit-scrollbar-thumb {
+.pin-modal-input::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
-.totodo-modal-inputdos::-webkit-scrollbar-track {
+.pin-modal-input::-webkit-scrollbar-track {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -95,7 +87,7 @@
   justify-content: space-between;
 }
 
-.todo-modal-btns {
+.pin-modal-btns {
   width: 60%;
 }
 
@@ -117,7 +109,7 @@
 }
 
 @media (max-width: 1024px) {
-  .todo-modal-input {
+  .pin-modal-input {
     font-size: 1.3rem;
   }
   .modal {

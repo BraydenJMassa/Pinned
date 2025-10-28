@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import "../styles/Modal.css";
-import EditTodoTextarea from "./EditTodoTextarea";
+import EditPinTextarea from "./EditPinTextarea";
 
-type TodoModalProps = {
+type PinModalProps = {
   onConfirm: (desc: string) => void;
   onCancel?: () => void;
   title: string;
   initialDesc: string;
 };
 
-const TodoModal = ({
+const PinModal = ({
   title,
   initialDesc,
   onConfirm,
   onCancel,
-}: TodoModalProps) => {
+}: PinModalProps) => {
   const [desc, setDesc] = useState(initialDesc);
 
   const handleSubmit = () => {
@@ -46,13 +46,13 @@ const TodoModal = ({
 
   return (
     <div className="modal-backdrop" onClick={handleBackdropClick}>
-      <div className="modal todo-modal" onClick={(e) => e.stopPropagation()}>
+      <div className="modal pin-modal" onClick={(e) => e.stopPropagation()}>
         <button className="modal-x-btn" onClick={onCancel}>
           x
         </button>
         <h1 className="modal-title">{title}</h1>
-        <EditTodoTextarea desc={desc} setDesc={setDesc} />
-        <div className="modal-btns todo-modal-btns">
+        <EditPinTextarea desc={desc} setDesc={setDesc} />
+        <div className="modal-btns pin-modal-btns">
           <button className="modal-btn green-btn" onClick={handleSubmit}>
             Submit
           </button>
@@ -65,4 +65,4 @@ const TodoModal = ({
   );
 };
 
-export default TodoModal;
+export default PinModal;

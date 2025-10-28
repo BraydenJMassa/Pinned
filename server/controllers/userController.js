@@ -1,80 +1,76 @@
-import { sql } from '../database/dbConfig.js'
-import bcrypt from 'bcrypt'
-import dotenv from 'dotenv'
-dotenv.config()
+import { sql } from "../database/dbConfig.js";
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const getUsers = async (req, res) => {
   try {
-    const users = await sql`SELECT user_id, email FROM users`
-    res.status(200).json(users)
+    const users = await sql`SELECT user_id, email FROM users`;
+    res.status(200).json(users);
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    res.status(500).json({ error: err.message });
   }
-}
+};
 
 export const getUser = async (req, res) => {
-  delete req.user.password
-  res.status(200).json(req.user)
-}
+  delete req.user.password;
+  res.status(200).json(req.user);
+};
 
 export const checkEmailExists = async (req, res) => {
-  const { email } = req.body
+  const { email } = req.body;
   if (!email) {
-    return res.status(400).json({ error: 'Email is required' })
+    return res.status(400).json({ error: "Email is required" });
   }
   try {
-    const [user] = await sql`SELECT * FROM users WHERE email = ${email}`
+    const [user] = await sql`SELECT * FROM users WHERE email = ${email}`;
     if (user) {
-      return res.status(200).json({ exists: true })
+      return res.status(200).json({ exists: true });
     } else {
-      return res.status(200).json({ exists: false })
+      return res.status(200).json({ exists: false });
     }
   } catch (err) {
-    return res.status(500).json({ error: err.message })
+    return res.status(500).json({ error: err.message });
   }
-}
+};
 
 export const updatePassword = async (req, res) => {
-  const { userId } = req.params
-  const updatedHashedPassword = await bcrypt.hash(req.user.password, 10)
+  const { userId } = req.params;
+  const updatedHashedPassword = await bcrypt.hash(req.user.password, 10);
   try {
     const [updatedUser] =
-      await sql`UPDATE users SET password = ${updatedHashedPassword} WHERE user_id = ${userId} RETURNING user_id, email`
-    res.status(200).json(updatedUser)
+      await sql`UPDATE users SET password = ${updatedHashedPassword} WHERE user_id = ${userId} RETURNING user_id, email`;
+    res.status(200).json(updatedUser);
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    res.status(500).json({ error: err.message });
   }
-}
+};
 
 export const deleteUser = async (req, res) => {
-  const { userId } = req.params
+  const { userId } = req.params;
   try {
-    await sql`DELETE FROM users WHERE user_id = ${userId}`
-    res.status(200).json({})
+    await sql`DELETE FROM users WHERE user_id = ${userId}`;
+    res.status(200).json({});
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    res.status(500).json({ error: err.message });
   }
-}
+};
 
-export const getTodosForUser = async (req, res) => {
-  console.log('Calling getTodosForUser')
-  const { userId } = req.params
-  const token = req.token
+export const getPinsForUser = async (req, res) => {
+  const { userId } = req.params;
+  const token = req.token;
   if (!token || token.userId !== userId) {
-    return res.status(401).json({ error: 'Unauthorized user' })
+    return res.status(401).json({ error: "Unauthorized user" });
   }
-  console.log('Token: ', token)
   try {
-    const [user] = await sql`SELECT * FROM users WHERE user_id = ${userId}`
+    const [user] = await sql`SELECT * FROM users WHERE user_id = ${userId}`;
     if (!user) {
-      return res.status(404).json({ error: 'User not found' })
+      return res.status(404).json({ error: "User not found" });
     }
-    console.log('User: ', user)
-    const todos =
-      await sql`SELECT * FROM todos WHERE user_id = ${userId} ORDER BY completed ASC, created_at DESC`
-    console.log('Todos: ', todos)
-    return res.status(200).json(todos)
+    const pins =
+      await sql`SELECT * FROM pins WHERE user_id = ${userId} ORDER BY completed ASC, created_at DESC`;
+    return res.status(200).json(pins);
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    res.status(500).json({ error: err.message });
   }
-}
+};

@@ -1,18 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import { AuthProvider } from './context/AuthProvider.tsx'
-import { ConfirmationModalProvider } from './context/ConfirmationModalProvider.tsx'
-import { TodoModalProvider } from './context/TodoModalProvider.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import { AuthProvider } from "./context/AuthProvider.tsx";
+import { ConfirmationModalProvider } from "./context/ConfirmationModalProvider.tsx";
+import { PinModalProvider } from "./context/PinModalProvider.tsx";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AuthProvider>
       <ConfirmationModalProvider>
-        <TodoModalProvider>
+        <PinModalProvider>
           <App />
-        </TodoModalProvider>
+        </PinModalProvider>
       </ConfirmationModalProvider>
     </AuthProvider>
   </StrictMode>
-)
+);

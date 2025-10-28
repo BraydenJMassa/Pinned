@@ -1,14 +1,11 @@
 import { useRef, useEffect } from "react";
 
-type TextAreaWithPointerScrollbarProps = {
+type EditPinTextareaProps = {
   desc: string;
   setDesc: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const EditTodoTextarea = ({
-  desc,
-  setDesc,
-}: TextAreaWithPointerScrollbarProps) => {
+const EditPinTextarea = ({ desc, setDesc }: EditPinTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -50,7 +47,7 @@ const EditTodoTextarea = ({
   return (
     <textarea
       ref={textareaRef}
-      className="todo-modal-input"
+      className="pin-modal-input"
       value={desc}
       onChange={(e) => setDesc(e.target.value)}
       spellCheck={false}
@@ -59,4 +56,4 @@ const EditTodoTextarea = ({
   );
 };
 
-export default EditTodoTextarea;
+export default EditPinTextarea;

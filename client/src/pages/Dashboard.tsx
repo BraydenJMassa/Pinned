@@ -1,92 +1,52 @@
-import { useEffect, useState } from 'react'
-import axios, { isAxiosError } from 'axios'
-import { TodoType } from '../types/TodoType'
-import '../styles/dashboard.css'
-import Navbar from '../components/Navbar'
-import { useAuth } from '../hooks/useAuth'
-import { useTodoModal } from '../hooks/useTodoModal'
-import TodosList from '../components/TodosList'
+import { useEffect, useState } from "react";
+import { PinType } from "../types/PinType";
+import "../styles/dashboard.css";
+import Navbar from "../components/Navbar";
+import { usePinModal } from "../hooks/usePinModal";
+import PinList from "../components/PinList";
+import PinOperations from "../utils/PinOperations";
 
 const Dashboard = () => {
-  const [todos, setTodos] = useState<undefined | TodoType[]>(undefined)
-  const [todosError, setTodosError] = useState<undefined | string>(undefined)
-  const { auth } = useAuth()
-  const { openTodoModal } = useTodoModal()
+  const [pins, setPins] = useState<undefined | PinType[]>(undefined);
+  const [pinsError, setPinsError] = useState<undefined | string>(undefined);
+  const { openPinModal } = usePinModal();
 
-  const handleClickAddTodo = () => {
-    openTodoModal({
-      title: 'Add Todo',
-      initialDesc: '',
-      onConfirm: createTodo,
-    })
-  }
+  const { fetchPins, createPin } = PinOperations(setPins, setPinsError);
 
-  const createTodo = async (desc: string) => {
-    try {
-      await axios.post(
-        'api/todo',
-        { description: desc },
-        {
-          headers: { Authorization: `Bearer ${auth.accessToken}` },
-          withCredentials: true,
-        }
-      )
-      await fetchTodos()
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        console.error(
-          'Error creating todo:',
-          err.response?.data?.error || err.message
-        )
-      } else {
-        console.error('Unexpected error:', err)
-      }
-    }
-  }
-
-  const fetchTodos = async () => {
-    try {
-      const response = await axios.get(`/api/user/todo/${auth.userId}`, {
-        headers: {
-          Authorization: `Bearer ${auth.accessToken}`,
-        },
-      })
-      setTodos(response.data)
-    } catch (err) {
-      if (isAxiosError(err)) {
-        setTodosError(
-          err.response?.data.message || 'Unknown error loading todos'
-        )
-      }
-    }
-  }
+  const handleClickAddPin = () => {
+    openPinModal({
+      title: "Add Pin",
+      initialDesc: "",
+      onConfirm: createPin,
+    });
+  };
 
   useEffect(() => {
-    fetchTodos()
-  }, [])
+    fetchPins();
+  }, []);
 
-  if (todosError) {
-    return <div className='dashboard todosError'>{todosError}</div>
+  if (pinsError) {
+    return <div className="dashboard pinsError">{pinsError}</div>;
   }
-  if (!todos) {
+  if (!pins) {
     return (
-      <div className='loading-container'>
-        <div className='spinner' />
+      <div className="loading-container">
+        <div className="spinner" />
       </div>
-    )
+    );
   }
 
   return (
-    <div className='dashboard'>
+    <div className="dashboard">
       <Navbar />
       <main>
-        <button className='create-todo-btn' onClick={handleClickAddTodo}>
+        <button className="create-pin-btn" onClick={handleClickAddPin}>
           +
         </button>
-        <TodosList todos={todos} onUpdate={fetchTodos} />
+        <PinList pins={pins} onUpdate={fetchPins} />
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
