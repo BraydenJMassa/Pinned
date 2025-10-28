@@ -66,7 +66,7 @@ const Login = () => {
         value={inputValues.email}
         handleChange={(e) => {
           setInputValues({ ...inputValues, email: e.target.value })
-          handleInputChange(e, inputValues)
+          handleInputChange(e)
         }}
         handleBlur={() => handleBlur('email', inputValues)}
         error={errors.email}
@@ -80,7 +80,7 @@ const Login = () => {
         value={inputValues.password}
         handleChange={(e) => {
           setInputValues({ ...inputValues, password: e.target.value })
-          handleInputChange(e, inputValues)
+          handleInputChange(e)
         }}
         handleBlur={() => handleBlur('password', inputValues)}
         error={errors.password}

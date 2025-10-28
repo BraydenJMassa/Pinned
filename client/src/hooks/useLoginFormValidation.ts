@@ -35,10 +35,7 @@ const useLoginFormValidation = () => {
     }
   }
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    inputValues: { email: string; password: string }
-  ) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     if (name === 'email' && hasBlurred.email) validateEmail(value)
     if (name === 'password' && hasBlurred.password) validatePassword(value)
