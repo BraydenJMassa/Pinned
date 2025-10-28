@@ -29,6 +29,8 @@ const EditTodoTextarea = ({
     const el = textareaRef.current;
     if (!el) return;
 
+    el.focus();
+
     const scrollbarWidth = el.offsetWidth - el.clientWidth;
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -50,7 +52,6 @@ const EditTodoTextarea = ({
       onChange={(e) => setDesc(e.target.value)}
       spellCheck={false}
       onKeyDown={handleKeyDown}
-      autoFocus
     />
   );
 };
