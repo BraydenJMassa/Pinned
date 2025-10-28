@@ -31,6 +31,9 @@ const EditTodoTextarea = ({
 
     el.focus();
 
+    const length = el.value.length;
+    el.selectionStart = el.selectionEnd = length;
+
     const scrollbarWidth = el.offsetWidth - el.clientWidth;
 
     const handleMouseMove = (e: MouseEvent) => {
