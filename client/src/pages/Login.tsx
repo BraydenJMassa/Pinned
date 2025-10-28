@@ -28,10 +28,10 @@ const Login = () => {
     e.preventDefault()
     const isValid = validateAll(inputValues)
     if (!isValid) return
-
+    const normalizedEmail = inputValues.email.toLowerCase()
     try {
       const emailCheck = await axios.post('/api/user/check-email/', {
-        email: inputValues.email,
+        email: normalizedEmail,
       })
       if (!emailCheck.data.exists) {
         executeEmailNotFoundError()
@@ -39,7 +39,7 @@ const Login = () => {
       }
 
       const response = await axios.post('/api/auth/login', {
-        email: inputValues.email,
+        email: normalizedEmail,
         password: inputValues.password,
       })
 

@@ -33,10 +33,10 @@ const Register = () => {
     if (!isValid) {
       return
     }
-
+    const normalizedEmail = inputValues.email.toLowerCase()
     try {
       const emailCheck = await axios.post('/api/user/check-email', {
-        email: inputValues.email,
+        email: normalizedEmail,
       })
       if (emailCheck.data.exists) {
         executeEmailInUseError()
@@ -54,7 +54,7 @@ const Register = () => {
     // Register logic
     try {
       const response = await axios.post('/api/auth/register', {
-        email: inputValues.email,
+        email: normalizedEmail,
         password: inputValues.password,
       })
       setAuth({
