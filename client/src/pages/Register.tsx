@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import FormInput from '../components/FormInput'
 import '../styles/form.css'
 import { Link, useNavigate } from 'react-router-dom'
@@ -22,6 +22,10 @@ const Register = () => {
   })
   const { setAuth } = useAuth()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    document.title = 'Pinned · Register'
+  }, [])
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
