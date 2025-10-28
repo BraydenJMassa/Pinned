@@ -59,7 +59,7 @@ export const deleteUser = async (req, res) => {
 export const getTodosForUser = async (req, res) => {
   const { userId } = req.params
   const token = req.token
-  if (token.userId !== userId) {
+  if (!token || token.userId !== userId) {
     return res.status(401).json({ error: 'Unauthorized user' })
   }
   try {

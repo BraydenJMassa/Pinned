@@ -37,6 +37,11 @@ app.use('/api/auth', authRoutes)
 
 const PORT = process.env.PORT || 4000
 
+app.use((err, req, res, next) => {
+  console.error('Error stack:', err)
+  res.status(500).json({ message: 'Server error', error: err.message })
+})
+
 app.listen(PORT, () => console.log(`HTTP server running on port ${PORT}`))
 
 // Start the HTTPS server on port 3000
