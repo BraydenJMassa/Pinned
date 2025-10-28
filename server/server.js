@@ -14,10 +14,23 @@ import { authCheck } from './middlewares/authCheck.js'
 
 // Setting up express server
 const app = express()
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://pinned-roan.vercel.app',
+]
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://pinned-roan.vercel.app'],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 )
 app.use(express.json())
