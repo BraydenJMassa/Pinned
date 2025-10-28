@@ -6,10 +6,10 @@ import {
   logoutUser,
 } from '../controllers/authController.js'
 
-// Import middlewares
-import validateEmail from '../middlewares/validateEmail.js'
-import validatePassword from '../middlewares/validatePassword.js'
-import { checkUserExistsByEmail } from '../middlewares/checkUserExists.js'
+// Import middleware
+import validateEmail from '../middleware/validateEmail.js'
+import validatePassword from '../middleware/validatePassword.js'
+import { checkUserExistsByEmail } from '../middleware/checkUserExists.js'
 
 // Initialize router
 import express from 'express'

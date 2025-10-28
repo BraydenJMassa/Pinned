@@ -8,7 +8,7 @@ import {
   checkEmailExists,
 } from '../controllers/userController.js'
 
-// Import middlewares
+// Import middleware
 import { authCheck } from '../middleware/authCheck.js'
 import { checkUserExistsById } from '../middleware/checkUserExists.js'
 import validatePassword from '../middleware/validatePassword.js'

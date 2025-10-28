@@ -10,7 +10,7 @@ dotenv.config()
 import userRoutes from './routes/userRoutes.js'
 import pinRoutes from './routes/pinRoutes.js'
 import authRoutes from './routes/authRoutes.js'
-import { authCheck } from './middlewares/authCheck.js'
+import { authCheck } from './middleware/authCheck.js'
 
 // Setting up express server
 const app = express()
@@ -35,7 +35,7 @@ app.use(
   })
 )
 
-// Server middlewares
+// Server middleware
 app.use(express.json())
 app.use(cookieParser())
 

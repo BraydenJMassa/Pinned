@@ -31,7 +31,7 @@ export const checkEmailExists = async (req, res) => {
 
 // Controller function to fetch all pins for specified user
 export const getPinsForUser = async (req, res) => {
-  // Ensures user is authenticated and exists in "authCheck" and "checkUserExistsById" middlewares
+  // Ensures user is authenticated and exists in "authCheck" and "checkUserExistsById" middleware
   const { userId } = req.params
   const token = req.token
   // Ensures userId in params matches the authenticated user's userId
