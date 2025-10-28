@@ -9,9 +9,9 @@ import {
 } from '../controllers/userController.js'
 
 // Import middlewares
-import { authCheck } from '../middlewares/authCheck.js'
-import { checkUserExistsById } from '../middlewares/checkUserExists.js'
-import validatePassword from '../middlewares/validatePassword.js'
+import { authCheck } from '../middleware/authCheck.js'
+import { checkUserExistsById } from '../middleware/checkUserExists.js'
+import validatePassword from '../middleware/validatePassword.js'
 
 // Initialize router
 import express from 'express'

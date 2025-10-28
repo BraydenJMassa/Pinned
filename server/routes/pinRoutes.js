@@ -5,7 +5,7 @@ import {
   deletePin,
   toggleComplete,
 } from '../controllers/pinController.js'
-import checkPinExists from '../middlewares/checkPinExists.js'
+import checkPinExists from '../middleware/checkPinExists.js'
 
 // Initialize router
 import express from 'express'
