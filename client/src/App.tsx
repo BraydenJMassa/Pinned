@@ -8,7 +8,9 @@ import ProtectedRoute from './utils/ProtectedRoute'
 import useAxiosInterceptor from './api/axiosSetup'
 
 const App = () => {
+  // Imports axios interceptor to attempt refreshing auth on page reload
   useAxiosInterceptor()
+  // Uses react-router-dom to route pages to specified url's
   return (
     <Router>
       <Routes>

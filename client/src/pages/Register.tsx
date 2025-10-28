@@ -7,8 +7,12 @@ import { initialRegisterInputValues } from '../utils/constants'
 import { useAuth } from '../hooks/useAuth'
 import axios from 'axios'
 
+// Register page
 const Register = () => {
+  // Sets variables for input values of text inputs
   const [inputValues, setInputValues] = useState(initialRegisterInputValues)
+
+  // Imports necessary Registration Validation functions
   const {
     errors,
     success,
@@ -16,58 +20,71 @@ const Register = () => {
     handleBlur,
     handleInputChange,
     executeEmailInUseError,
+    executeUnknownError,
   } = useRegisterFormValidation({
     inputValues,
     setInputValues,
   })
-  const { setAuth } = useAuth()
+
+  // Imports necessary auth and navigate functions
+  const { setAuth, clearAuth } = useAuth()
   const navigate = useNavigate()
 
+  // Sets page title
   useEffect(() => {
     document.title = 'Pinned · Register'
   }, [])
 
+  // Called when user attempts to submit Register form
   const handleSubmit = async (e: FormEvent) => {
+    // Attempts to validate inputs
     e.preventDefault()
     const isValid = validateAll()
+    // If inputs are not valid, exit function
     if (!isValid) {
       return
     }
+    // Sets email to lowercase, as is expected in database
     const normalizedEmail = inputValues.email.toLowerCase()
     try {
+      // Checks to make sure email doesn't exist in database
       const emailCheck = await axios.post('/api/user/check-email', {
         email: normalizedEmail,
       })
+      // If email already exists, execute an "Email in use" error and clears auth state
       if (emailCheck.data.exists) {
         executeEmailInUseError()
-        setInputValues({
-          email: inputValues.email,
-          password: '',
-          confirmPassword: '',
-        })
+        setInputValues({ ...inputValues, password: '', confirmPassword: '' })
+        clearAuth()
         return
       }
     } catch (err) {
-      console.error(err)
-      setAuth({ userId: '', accessToken: '' })
+      // Unknown errors handled here
+      executeUnknownError()
+      setInputValues({ ...inputValues, password: '', confirmPassword: '' })
+      clearAuth()
     }
-    // Register logic
+    // Registration logic
     try {
+      // Attempts to register new account to server
       const response = await axios.post('/api/auth/register', {
         email: normalizedEmail,
         password: inputValues.password,
       })
+      // If successful, sets auth state to new user
       setAuth({
         userId: response.data.userId,
         accessToken: response.data.accessToken,
       })
+      // Navigates user to dashboard
       navigate('/dashboard')
     } catch (err) {
-      console.error(err)
-      setAuth({ userId: '', accessToken: '' })
+      // If unsuccessful, clears auth state
+      clearAuth()
     }
   }
 
+  // Register page markup
   return (
     <>
       <form onSubmit={handleSubmit}>

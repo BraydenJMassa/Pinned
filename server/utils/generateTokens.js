@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 
+// Helper function to generate new access token
 export const createAccessToken = (user) => {
   return jwt.sign(
     { userId: user.userId, email: user.email },
@@ -9,7 +10,7 @@ export const createAccessToken = (user) => {
     }
   )
 }
-
+// Helper function to generate new refresh token
 export const createRefreshToken = (user) => {
   return jwt.sign(
     { userId: user.userId, email: user.email },

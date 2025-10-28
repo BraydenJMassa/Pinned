@@ -1,13 +1,17 @@
-import validateEmail from '../middlewares/validateEmail.js'
-import validatePassword from '../middlewares/validatePassword.js'
-import { checkUserExistsByEmail } from '../middlewares/checkUserExists.js'
+// Import controller functions
 import {
   loginUser,
   registerUser,
   validateRefreshToken,
   logoutUser,
 } from '../controllers/authController.js'
-import { authCheck } from '../middlewares/authCheck.js'
+
+// Import middlewares
+import validateEmail from '../middlewares/validateEmail.js'
+import validatePassword from '../middlewares/validatePassword.js'
+import { checkUserExistsByEmail } from '../middlewares/checkUserExists.js'
+
+// Initialize router
 import express from 'express'
 const router = express.Router()
 

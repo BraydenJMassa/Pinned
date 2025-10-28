@@ -52,3 +52,4 @@ api_calls
 # ===== Misc =====
 *.tsbuildinfo
 *.local
+api_calls/

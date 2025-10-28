@@ -15,6 +15,7 @@ import { authCheck } from './middlewares/authCheck.js'
 // Setting up express server
 const app = express()
 
+// Setting up cors
 const allowedOrigins = [
   'http://localhost:5173',
   'https://pinned-roan.vercel.app',
@@ -33,10 +34,12 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 )
+
+// Server middlewares
 app.use(express.json())
 app.use(cookieParser())
 
-// Configure user routes
+// Configure routes
 app.use('/api/user', userRoutes)
 app.use('/api/pin', authCheck, pinRoutes)
 app.use('/api/auth', authRoutes)
@@ -48,13 +51,8 @@ app.use('/api/auth', authRoutes)
 //   cert: fs.readFileSync('./ssl/cert.pem'), // Path to your certificate file
 // }
 
+// Express app begins listening on port 4000
 const PORT = process.env.PORT || 4000
-
-app.use((err, req, res, next) => {
-  console.error('Error stack:', err)
-  res.status(500).json({ message: 'Server error', error: err.message })
-})
-
 app.listen(PORT, () => console.log(`HTTP server running on port ${PORT}`))
 
 // Start the HTTPS server on port 3000

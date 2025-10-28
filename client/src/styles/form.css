@@ -1,3 +1,5 @@
+/* Login and Registration form styles */
+
 form {
   width: 350px;
   margin: 0 auto 0 auto;
@@ -11,14 +13,12 @@ form {
   flex-direction: column;
   justify-content: space-evenly;
 }
-
 .form-heading {
   color: #0f2027;
   text-align: center;
   font-size: 2rem;
   cursor: default;
 }
-
 .submit-btn {
   padding: 10px;
   margin-top: 10px;
@@ -29,12 +29,10 @@ form {
   border-radius: 4px;
   cursor: pointer;
 }
-
 .form-input {
   display: flex;
   flex-direction: column;
 }
-
 .form-input input {
   border: 2px solid #f0f0f0;
   border-radius: 6px;
@@ -43,23 +41,22 @@ form {
   padding: 10px;
   width: 100%;
 }
-
 .form-input input:focus {
   outline: 0;
 }
 
+/* Dynamic styles based on input validation successes and errors */
 .form-input.success input {
   border-color: #09c372;
 }
-
 .form-input.error input {
   border-color: #ff3860;
 }
-
 .form-input.error {
   color: #ff3860;
 }
 
+/* Link at bottom to toggle between Login and Register pages */
 .auth-toggle {
   cursor: default;
   font-size: 0.95rem;

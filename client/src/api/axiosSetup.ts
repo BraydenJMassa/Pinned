@@ -3,14 +3,16 @@ import useRefresh from '../hooks/useRefresh'
 import { useEffect } from 'react'
 import { useAuth } from '../hooks/useAuth'
 
+// Sets up axios defaults
 axios.defaults.baseURL = import.meta.env.PROD
   ? 'https://pinned-l4nt.onrender.com'
   : 'http://localhost:4000'
 axios.defaults.withCredentials = true
 
+// Interceptor tries assigning new access token if valid refresh token exists
 const useAxiosInterceptor = () => {
-  const { setAuth } = useAuth()
-  const { refresh } = useRefresh(setAuth)
+  const { setAuth, clearAuth } = useAuth()
+  const { refresh } = useRefresh({ setAuth, clearAuth })
 
   useEffect(() => {
     const interceptor = axios.interceptors.response.use(

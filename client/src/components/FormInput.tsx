@@ -1,6 +1,7 @@
 import { ChangeEvent, FocusEvent } from 'react'
 
-type Props = {
+// Type declaration for Props of FormInput element
+type FormInputProps = {
   labelText: string
   name: string
   type: string
@@ -12,6 +13,7 @@ type Props = {
   success: boolean
 }
 
+// Element for the text input fields in the login and register forms
 const FormInput = ({
   type,
   handleChange,
@@ -22,13 +24,17 @@ const FormInput = ({
   name,
   error,
   success,
-}: Props) => {
+}: FormInputProps) => {
+  // Returns empty class for default style, error class for red outline, and success
+  // class for green outline, depending on status of form input
   const generateExtraClass = () => {
     if (error === '') {
       return success ? 'success' : ''
     }
     return 'error'
   }
+
+  // Form input markup
   return (
     <div className={`form-input ${generateExtraClass()}`}>
       <label htmlFor={name}>{labelText}</label>

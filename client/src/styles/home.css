@@ -1,10 +1,4 @@
-#root {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-}
+/* Home page styles */
 
 .home-container {
   display: flex;
@@ -23,7 +17,6 @@
   margin: auto;
   font-size: 1.8rem;
 }
-
 .home-link {
   border: 1px solid black;
   font-size: 1.8rem;
@@ -34,7 +27,12 @@
   width: 60%;
   margin: 0 auto;
 }
+.home-link:hover {
+  background: linear-gradient(0deg, #254b5c, #4d849b);
+  color: whitesmoke;
+}
 
+/* Media query for tablet/smaller screen styles */
 @media (max-width: 1024px) {
   .home-container {
     font-size: 1.5rem;
@@ -44,16 +42,11 @@
     font-size: 1rem;
   }
 }
-
+/* Media query for mobile styles */
 @media (max-width: 480px) {
   .home-container {
     width: 80vw;
     padding: 25px 30px;
     font-size: 1.1rem;
   }
-}
-
-.home-link:hover {
-  background: linear-gradient(0deg, #254b5c, #4d849b);
-  color: whitesmoke;
 }
