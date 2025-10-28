@@ -50,6 +50,7 @@ const EditTodoTextarea = ({
       onChange={(e) => setDesc(e.target.value)}
       spellCheck={false}
       onKeyDown={handleKeyDown}
+      autoFocus
     />
   );
 };
