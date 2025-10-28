@@ -56,3 +56,10 @@
   outline: none;
   box-shadow: none;
 }
+
+@media (max-width: 480px) {
+  .create-pin-btn {
+    width: 30px;
+    height: 30px;
+  }
+}
