@@ -6,16 +6,6 @@ Built as both a **portfolio project** and a **production tool** I use daily, Pin
 
 ---
 
-## 🖼️ Preview
-
-> _Quick look at the Pinned app in action_
-
-![Pinned Screenshot](./src/assets/demo.png)
-
-> Live App → [https://pinned-roan.vercel.app/]
-
----
-
 ## 🧠 Key Features
 
 - ✅ **Authentication & Authorization** — Secure login/register flow using JWTs (access + refresh tokens).
