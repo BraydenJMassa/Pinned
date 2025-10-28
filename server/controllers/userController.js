@@ -57,18 +57,22 @@ export const deleteUser = async (req, res) => {
 }
 
 export const getTodosForUser = async (req, res) => {
+  console.log('Calling getTodosForUser')
   const { userId } = req.params
   const token = req.token
   if (!token || token.userId !== userId) {
     return res.status(401).json({ error: 'Unauthorized user' })
   }
+  console.log('Token: ', token)
   try {
     const [user] = await sql`SELECT * FROM users WHERE user_id = ${userId}`
     if (!user) {
       return res.status(404).json({ error: 'User not found' })
     }
+    console.log('User: ', user)
     const todos =
       await sql`SELECT * FROM todos WHERE user_id = ${userId} ORDER BY completed ASC, createdAt DESC`
+    console.log('Todos: ', todos)
     return res.status(200).json(todos)
   } catch (err) {
     res.status(500).json({ error: err.message })
